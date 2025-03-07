@@ -1,0 +1,43 @@
+stages:
+  - build
+  - deploy
+
+build-job:
+  stage: build
+  only:
+    - development
+    - production
+  tags:
+    - runner240
+  script:
+    - docker build --pull --no-cache -t $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+
+deploy-dev:
+  stage: deploy
+  only:
+    - development
+  tags:
+    - split-bill
+  script:
+    - docker rm -f $CI_PROJECT_NAME-$CI_COMMIT_BRANCH || true
+    - docker rmi $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH || true
+    - docker login $CI_REGISTRY --username $CI_REGISTRY_USER  --password $CI_REGISTRY_PASSWORD
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    - docker run -d -p 8081:8081 --name $CI_PROJECT_NAME-$CI_COMMIT_BRANCH --restart always $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    - docker logout $CI_REGISTRY
+
+deploy-prod:
+  stage: deploy
+  only:
+    - production
+  tags:
+    - split-bill-prod
+  when: manual
+  script:
+    - docker rm -f $CI_PROJECT_NAME-$CI_COMMIT_BRANCH || true
+    - docker rmi $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH || true
+    - docker login $CI_REGISTRY --username $CI_REGISTRY_USER  --password $CI_REGISTRY_PASSWORD
+    - docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    - docker run -d -p 8081:8081 --name $CI_PROJECT_NAME-$CI_COMMIT_BRANCH --restart always $CI_REGISTRY_IMAGE:$CI_COMMIT_BRANCH
+    - docker logout $CI_REGISTRY
