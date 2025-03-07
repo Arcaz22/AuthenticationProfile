@@ -1,7 +1,5 @@
 const { Router } = require('express')
-const {
-    VerifyOtpController
-} = require('../controller/otp.controller')
+const { VerifyOtpController } = require('../controller/otp.controller')
 
 const router = Router()
 

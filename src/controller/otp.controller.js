@@ -1,7 +1,5 @@
 const verifyOtp = require('../service/master/otp/verify-otp')
-const {
-  sendSuccessResponse
-} = require('../common/response/base-response')
+const { sendSuccessResponse } = require('../common/response/base-response')
 
 const VerifyOtpController = async (req, res, next) => {
   try {
@@ -15,5 +13,5 @@ const VerifyOtpController = async (req, res, next) => {
 }
 
 module.exports = {
-    VerifyOtpController
+  VerifyOtpController
 }

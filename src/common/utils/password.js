@@ -12,6 +12,6 @@ const ComparePassword = async (plainPassword, hashedPassword) => {
 }
 
 module.exports = {
-    EncryptPassword,
-    ComparePassword
+  EncryptPassword,
+  ComparePassword
 }

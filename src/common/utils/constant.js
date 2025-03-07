@@ -15,6 +15,6 @@ module.exports = {
     USERNAME_ALREADY_EXIST: 'Username sudah terdaftar',
     PASSWORD_NOT_MATCH: 'Password tidak sama',
     USER_NOT_VERIFIED: 'User belum terverifikasi',
-    INVALID_OTP: 'OTP tidak valid',
+    INVALID_OTP: 'OTP tidak valid'
   }
 }
