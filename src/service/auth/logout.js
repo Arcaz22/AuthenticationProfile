@@ -6,7 +6,7 @@ const logout = async (userId) => {
       { is_revoked: true },
       { where: { user_id: userId } }
     )
-    return { message: 'Logout successful' }
+    return null
   } catch (error) {
     console.error('Error in logout:', error)
   }

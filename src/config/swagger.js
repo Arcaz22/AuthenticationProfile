@@ -6,9 +6,9 @@ const swaggerOption = {
   definition: {
     openapi: '3.1.0',
     info: {
-      title: 'SSO API',
+      title: 'Authentication API',
       version: '1.0.0',
-      description: 'A simple SSO API',
+      description: 'A simple auth API',
       contact: {
         name: 'arcaz22',
         email: 'chandraarcychan@gmail.com'

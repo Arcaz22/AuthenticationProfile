@@ -1,45 +1,45 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class user extends Model {
+  class user_profile extends Model {
     static associate(models) {
-      user.belongsToMany(models.role, {
-        through: 'user_roles',
+      user_profile.belongsTo(models.user, {
         foreignKey: 'user_id',
-        as: 'roles',
-        onDelete: 'CASCADE'
-      })
-
-      user.hasOne(models.user_profile, {
-        foreignKey: 'user_id',
-        as: 'profile',
+        as: 'user',
         onDelete: 'CASCADE'
       })
     }
   }
-  user.init(
+  user_profile.init(
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
       },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      is_verified: {
-        type: DataTypes.BOOLEAN,
+      user_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: false
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      full_name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      gender: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      avatar: {
+        type: DataTypes.STRING,
+        allowNull: true
       },
       created_at: {
         type: DataTypes.DATE,
@@ -52,9 +52,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'user',
+      modelName: 'user_profile',
       timestamps: false
     }
   )
-  return user
+  return user_profile
 }

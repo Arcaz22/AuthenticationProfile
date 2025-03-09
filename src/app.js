@@ -22,7 +22,7 @@ swaggerSetup(app)
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'WELCOME TO SSO API',
+    message: 'WELCOME TO AUTH API',
     version: '1.0.0'
   })
 })

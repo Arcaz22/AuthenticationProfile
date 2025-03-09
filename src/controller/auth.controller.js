@@ -6,6 +6,7 @@ const {
   getGoogleAuthUrl,
   handleGoogleCallback
 } = require('../service/auth/google-auth')
+const { SUCCESS_MESSAGE } = require('../common/utils/constant')
 const signIn = require('../service/auth/sign_in')
 const refreshTokens = require('../service/auth/refresh-token')
 const logout = require('../service/auth/logout')
@@ -14,7 +15,10 @@ const signUp = require('../service/auth/sign_up')
 const SignUpController = async (req, res, next) => {
   try {
     const response = await signUp(req.body)
-    sendCreatedResponse(res, response)
+    sendCreatedResponse(res, {
+      message: SUCCESS_MESSAGE.USER_CREATED,
+      data: response
+    })
   } catch (error) {
     next(error)
   }
@@ -23,7 +27,10 @@ const SignUpController = async (req, res, next) => {
 const SignInController = async (req, res, next) => {
   try {
     const response = await signIn(req.body)
-    sendSuccessResponse(res, response)
+    sendSuccessResponse(res, {
+        message: SUCCESS_MESSAGE.USER_LOGGED_IN,
+        data: response
+    })
   } catch (error) {
     next(error)
   }
@@ -34,7 +41,10 @@ const RefreshTokenController = async (req, res, next) => {
     const { refresh_token } = req.body
 
     const response = await refreshTokens(refresh_token)
-    sendSuccessResponse(res, response)
+    sendSuccessResponse(res, {
+        message: SUCCESS_MESSAGE.TOKEN_REFRESHED,
+        data: response
+    })
   } catch (error) {
     next(error)
   }
@@ -45,7 +55,10 @@ const LogoutController = async (req, res, next) => {
     const userId = req.user.id
     const response = await logout(userId)
 
-    sendSuccessResponse(res, response)
+    sendSuccessResponse(res,{
+        message: SUCCESS_MESSAGE.USER_LOGGED_OUT,
+        data: response
+    })
   } catch (error) {
     next(error)
   }
@@ -62,7 +75,11 @@ const HandleGoogleLoginCallbackController = async (req, res, next) => {
 
     const { user, accessToken } = await handleGoogleCallback(code)
 
-    sendSuccessResponse(res, { user, accessToken })
+    sendSuccessResponse(res, {
+        message: SUCCESS_MESSAGE.USER_LOGGED_IN,
+        user,
+        accessToken
+    })
   } catch (error) {
     next(error)
   }

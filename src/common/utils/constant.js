@@ -4,7 +4,16 @@ module.exports = {
   JWT_TOKEN_EXPIRED: '12h',
   JWT_REFRESH_TOKEN_EXPIRED: '7d',
   OTP_KEY_PREFIX: 'otp:',
-  SUCCESS_MESSAGE: {},
+  SUCCESS_MESSAGE: {
+    USER_CREATED: 'User created',
+    USER_LOGGED_IN: 'User logged in',
+    TOKEN_REFRESHED: 'Token refreshed',
+    USER_LOGGED_OUT: 'User logged out',
+    OTP_VERIFIED: "OTP verified",
+    CURRENT_USER_RETRIEVED: 'Current user profile retrieved successfully',
+    PROFILE_ADDED: 'Profile created successfully',
+    PROFILE_UPDATED: 'Profile updated successfully',
+  },
 
   ERROR_MESSAGE: {
     USER_NOT_FOUND: 'User tidak ditemukan',
@@ -15,6 +24,7 @@ module.exports = {
     USERNAME_ALREADY_EXIST: 'Username sudah terdaftar',
     PASSWORD_NOT_MATCH: 'Password tidak sama',
     USER_NOT_VERIFIED: 'User belum terverifikasi',
-    INVALID_OTP: 'OTP tidak valid'
+    INVALID_OTP: 'OTP tidak valid',
+    PROFILE_ALREADY_EXIST: 'Profile sudah ada',
   }
 }
