@@ -9,6 +9,7 @@ require('dotenv').config()
 const requestLogger = require('./middlewares/request-logger')
 const errorHandler = require('./middlewares/error-handler')
 const swaggerSetup = require('./config/swagger')
+const { initializeMinioBucket } = require('./config/minio')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use(requestLogger)
+initializeMinioBucket()
 swaggerSetup(app)
 
 app.get('/', (req, res) => {

@@ -1,5 +1,7 @@
 const { sendSuccessResponse } = require('../common/response/base-response')
 const { SUCCESS_MESSAGE } = require('../common/utils/constant')
+const { uploadFileToMinio } = require('../middlewares/multer-upload')
+const addAvatarProfile = require('../service/master/user/add-avatar-profile')
 const addProfile = require('../service/master/user/add-profile')
 const getCurrentUser = require('../service/master/user/current-user')
 const updateProfile = require('../service/master/user/update-profile')
@@ -58,8 +60,29 @@ const UpdateProfileController = async (req, res, next) => {
   }
 }
 
+const AddAvatarProfileController = async (req, res, next) => {
+  try {
+    const user_id = req.user.id
+    const avatar = req.file
+
+    const avatarFileName = await uploadFileToMinio(avatar)
+
+    const payload = {
+      user_id,
+      avatar: avatarFileName
+    }
+
+    await addAvatarProfile(payload)
+
+    return sendSuccessResponse(res, null, 'Avatar added successfully')
+  } catch (error) {
+    next(error)
+  }
+}
+
 module.exports = {
   AddProfileController,
   GetCurrentUserController,
-  UpdateProfileController
+  UpdateProfileController,
+  AddAvatarProfileController
 }

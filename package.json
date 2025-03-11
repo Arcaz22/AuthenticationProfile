@@ -14,7 +14,8 @@
     "db:rollback": "sequelize db:migrate:undo",
     "db:rollback:all": "npx sequelize-cli db:migrate:undo:all",
     "db:seed:all": "npx sequelize-cli db:seed:all",
-    "docker:redis": "docker run -d --name redis_split_bill -p 6380:6379 --restart unless-stopped redis redis-server --requirepass 'R4dis'"
+    "docker:redis": "docker run -d --name redis_split_bill -p 6380:6379 --restart unless-stopped redis redis-server --requirepass 'R4dis'",
+    "docker:minio": "docker run -d --name minio_split_bill -p 9000:9000 -p 9001:9001 --restart unless-stopped -e MINIO_ACCESS_KEY=minio_split_bill -e MINIO_SECRET_KEY=minio_split_bill minio/minio server /data --console-address ':9001'"
   },
   "author": "arcaz22",
   "license": "ISC",
@@ -30,6 +31,7 @@
     "install": "^0.13.0",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
+    "minio": "^8.0.4",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.10.0",

@@ -1,5 +1,6 @@
 const { user, role, user_profile } = require('../../../models')
 const { ERROR_MESSAGE } = require('../../../common/utils/constant')
+const { generatePresignedUrl } = require('../../../config/minio')
 
 const getCurrentUser = async (userId) => {
   try {
@@ -10,7 +11,7 @@ const getCurrentUser = async (userId) => {
         {
           model: user_profile,
           as: 'profile',
-          attributes: ['full_name', 'phone', 'gender'],
+          attributes: ['full_name', 'phone', 'gender', 'avatar']
         },
         {
           model: role,
@@ -25,6 +26,13 @@ const getCurrentUser = async (userId) => {
       const error = new Error(ERROR_MESSAGE.USER_NOT_FOUND)
       error.statusCode = 404
       throw error
+    }
+
+    if (userData.profile && userData.profile.avatar) {
+      const avatarFileName = userData.profile.avatar
+      const avatarUrl = await generatePresignedUrl(avatarFileName)
+
+      userData.profile.avatar = avatarUrl
     }
 
     return userData

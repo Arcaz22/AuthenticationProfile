@@ -4,6 +4,7 @@ module.exports = {
   JWT_TOKEN_EXPIRED: '12h',
   JWT_REFRESH_TOKEN_EXPIRED: '7d',
   OTP_KEY_PREFIX: 'otp:',
+  MAX_SIZE: 10 * 1024 * 1024,
   SUCCESS_MESSAGE: {
     USER_CREATED: 'User created',
     USER_LOGGED_IN: 'User logged in',
@@ -13,6 +14,7 @@ module.exports = {
     CURRENT_USER_RETRIEVED: 'Current user profile retrieved successfully',
     PROFILE_ADDED: 'Profile created successfully',
     PROFILE_UPDATED: 'Profile updated successfully',
+    AVATAR_ADDED: 'Avatar added successfully',
   },
 
   ERROR_MESSAGE: {
