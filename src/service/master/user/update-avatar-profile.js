@@ -1,8 +1,9 @@
 const { user_profile } = require('../../../models')
-const avatarSchema = require('../../../common/validations/master/avatar')
+const { avatarSchema } = require('../../../common/validations/master/avatar')
 const { ERROR_MESSAGE } = require('../../../common/utils/constant')
+const { deleteFileFromMinio } = require('../../../middlewares/multer-upload')
 
-const addAvatarProfile = async (payload) => {
+const updateAvatarProfile = async (payload) => {
   try {
     const { error } = avatarSchema.validate(payload, { abortEarly: false })
     if (error) {
@@ -21,21 +22,26 @@ const addAvatarProfile = async (payload) => {
       throw error
     }
 
+    if (existingProfile.avatar) {
+      await deleteFileFromMinio(existingProfile.avatar)
+    }
+
     const updatedProfile = await user_profile.update(
       {
         avatar,
         updated_at: new Date()
       },
       {
-        where: { user_id }
+        where: { user_id },
+        returning: true
       }
     )
 
-    return updatedProfile
+    return updatedProfile[1][0]
   } catch (error) {
-    console.error('Error in add avatar profile:', error)
+    console.error('Error in update avatar profile:', error)
     throw error
   }
 }
 
-module.exports = addAvatarProfile
+module.exports = updateAvatarProfile

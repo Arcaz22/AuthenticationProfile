@@ -23,14 +23,7 @@ const createResponse = (
   })
 }
 
-const sendPaginatedResponse = (
-  res,
-  data,
-  paging,
-  message = 'Success',
-  ex = null
-) => {
-  const { totalItems, totalPages, currentPage } = paging
+const sendPaginatedResponse = (res, data, message = 'Success', ex = null) => {
   return res.status(200).send({
     alert: {
       request_id: requestId,
@@ -38,11 +31,6 @@ const sendPaginatedResponse = (
       code: 200,
       message,
       ex
-    },
-    paging: {
-      totalItems,
-      totalPages,
-      currentPage
     },
     data
   })

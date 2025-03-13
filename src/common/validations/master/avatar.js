@@ -5,6 +5,4 @@ const avatarSchema = joi.object({
   avatar: joi.string().required()
 })
 
-module.exports = {
-  avatarSchema
-}
+module.exports = avatarSchema

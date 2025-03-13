@@ -41,7 +41,18 @@ async function uploadFileToMinio(file) {
   }
 }
 
+async function deleteFileFromMinio(filename) {
+    try {
+      await minioClient.removeObject(BUCKET_NAME, filename)
+      return true
+    } catch (error) {
+      console.error('Error deleting file from Minio:', error)
+      throw error
+    }
+  }
+
 module.exports = {
   multerUpload,
-  uploadFileToMinio
+  uploadFileToMinio,
+  deleteFileFromMinio
 }

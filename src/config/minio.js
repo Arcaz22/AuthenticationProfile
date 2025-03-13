@@ -2,14 +2,6 @@ const Minio = require('minio')
 
 require('dotenv').config()
 
-console.log('MINIO_ENDPOINT', process.env.MINIO_ENDPOINT)
-console.log('MINIO_PORT', process.env.MINIO_PORT)
-console.log('MINIO_USE_SSL', process.env.MINIO_USE_SSL)
-console.log('MINIO_ACCESS_KEY', process.env.MINIO_ACCESS_KEY)
-console.log('MINIO_SECRET_KEY', process.env.MINIO_SECRET_KEY)
-console.log('BUCKET_NAME', process.env.MINIO_PATH)
-console.log('API_VERSION', process.env.MINIO_API)
-
 const minioClient = new Minio.Client({
   endPoint: process.env.MINIO_ENDPOINT,
   port: parseInt(process.env.MINIO_PORT),

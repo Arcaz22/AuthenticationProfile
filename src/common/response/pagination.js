@@ -1,32 +1,33 @@
 const { DEFAULT_PAGE, DEFAULT_PER_PAGE } = require('../utils/constant')
 
-exports.getPagination = function (
+const getPagination = (page = DEFAULT_PAGE, perPage = DEFAULT_PER_PAGE) => {
+  const limit = perPage ? +perPage : DEFAULT_PER_PAGE
+  const offset = page ? (page - 1) * limit : 0
+
+  return { limit, offset }
+}
+
+const getPagingData = (
+  data,
   page = DEFAULT_PAGE,
   perPage = DEFAULT_PER_PAGE
-) {
-  const pageIndex = Math.max(page - 1, 0)
-  const limit = Math.max(perPage, 1)
-  const offset = pageIndex * limit
+) => {
+  const { count: totalItems, rows } = data
+  const currentPage = page ? +page : DEFAULT_PAGE
+  const totalPages = Math.ceil(totalItems / perPage)
 
   return {
-    limit,
-    offset
+    content: rows,
+    pageable: {
+      totalItems,
+      totalPages,
+      currentPage,
+      pageSize: +perPage
+    }
   }
 }
 
-exports.getPagingData = function (
-  data,
-  page = DEFAULT_PAGE,
-  limit = DEFAULT_PER_PAGE
-) {
-  const { count: totalItems, rows: items } = data
-  const currentPage = Math.max(page, 1)
-  const totalPages = Math.ceil(totalItems / limit)
-
-  return {
-    totalItems,
-    items,
-    totalPages,
-    currentPage
-  }
+module.exports = {
+  getPagination,
+  getPagingData
 }
