@@ -4,8 +4,6 @@
  *   get:
  *      summary: get all roles
  *      tags: [Role]
- *      security:
- *        - bearerAuth: []
  *      parameters:
  *        - in: query
  *          name: page

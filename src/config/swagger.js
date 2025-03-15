@@ -8,7 +8,7 @@ const swaggerOption = {
     info: {
       title: 'Authentication API',
       version: '1.0.0',
-      description: 'A simple auth API',
+      description: 'Auth service API documentation',
       contact: {
         name: 'arcaz22',
         email: 'chandraarcychan@gmail.com'

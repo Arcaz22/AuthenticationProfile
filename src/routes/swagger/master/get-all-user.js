@@ -4,8 +4,6 @@
  *   get:
  *      summary: get all user
  *      tags: [User]
- *      security:
- *        - bearerAuth: []
  *      parameters:
  *        - in: query
  *          name: page

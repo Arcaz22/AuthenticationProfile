@@ -7,9 +7,13 @@ const role = require('./role')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.json({
-    message: 'API - 👋🌎🌍🌏'
+router.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'OK',
+    timestamp: new Date(),
+    service: 'auth-service',
+    version: '1.0.0',
+    environment: process.env.NODE_ENV || 'development'
   })
 })
 
