@@ -112,6 +112,7 @@ npx sequelize-cli seed:generate --name demo-user
 ## API Features
 
 ### Authentication
+
 - Sign up with email verification
 - Sign in with username/password
 - Google OAuth2 login
@@ -120,12 +121,14 @@ npx sequelize-cli seed:generate --name demo-user
 - Logout
 
 ### User Management
+
 - User profile creation and updates
 - Avatar upload and management
 - Role-based access control
 - Phone number validation
 
 ### Security
+
 - Password encryption with bcrypt
 - JWT token validation
 - Request logging
@@ -133,11 +136,13 @@ npx sequelize-cli seed:generate --name demo-user
 - CORS and Helmet security
 
 ### File Storage
+
 - MinIO integration for file storage
 - Avatar image upload
 - Presigned URLs for secure access
 
 ### Caching
+
 - Redis for OTP storage
 - Efficient session management
 

@@ -28,8 +28,8 @@ const SignInController = async (req, res, next) => {
   try {
     const response = await signIn(req.body)
     sendSuccessResponse(res, {
-        message: SUCCESS_MESSAGE.USER_LOGGED_IN,
-        data: response
+      message: SUCCESS_MESSAGE.USER_LOGGED_IN,
+      data: response
     })
   } catch (error) {
     next(error)
@@ -42,8 +42,8 @@ const RefreshTokenController = async (req, res, next) => {
 
     const response = await refreshTokens(refresh_token)
     sendSuccessResponse(res, {
-        message: SUCCESS_MESSAGE.TOKEN_REFRESHED,
-        data: response
+      message: SUCCESS_MESSAGE.TOKEN_REFRESHED,
+      data: response
     })
   } catch (error) {
     next(error)
@@ -55,9 +55,9 @@ const LogoutController = async (req, res, next) => {
     const userId = req.user.id
     const response = await logout(userId)
 
-    sendSuccessResponse(res,{
-        message: SUCCESS_MESSAGE.USER_LOGGED_OUT,
-        data: response
+    sendSuccessResponse(res, {
+      message: SUCCESS_MESSAGE.USER_LOGGED_OUT,
+      data: response
     })
   } catch (error) {
     next(error)
@@ -76,9 +76,9 @@ const HandleGoogleLoginCallbackController = async (req, res, next) => {
     const { user, accessToken } = await handleGoogleCallback(code)
 
     sendSuccessResponse(res, {
-        message: SUCCESS_MESSAGE.USER_LOGGED_IN,
-        user,
-        accessToken
+      message: SUCCESS_MESSAGE.USER_LOGGED_IN,
+      user,
+      accessToken
     })
   } catch (error) {
     next(error)

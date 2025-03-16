@@ -13,9 +13,15 @@ const { initializeMinioBucket } = require('./config/minio')
 
 const app = express()
 
+const corsOptions = {
+  origin: 'http://localhost:3000', // Allow only Swagger UI (or frontend domain)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // HTTP methods allowed
+  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+}
+
 app.use(morgan('dev'))
 app.use(helmet())
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use(requestLogger)

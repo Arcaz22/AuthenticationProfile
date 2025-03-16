@@ -11,8 +11,7 @@ const getGoogleAuthUrl = () => {
     scope: [
       'https://www.googleapis.com/auth/userinfo.email',
       'https://www.googleapis.com/auth/userinfo.profile'
-    ],
-    prompt: 'consent'
+    ]
   })
   console.log('authUrl:', authUrl)
   return authUrl

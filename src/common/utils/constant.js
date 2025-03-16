@@ -10,7 +10,7 @@ module.exports = {
     USER_LOGGED_IN: 'User logged in',
     TOKEN_REFRESHED: 'Token refreshed',
     USER_LOGGED_OUT: 'User logged out',
-    OTP_VERIFIED: "OTP verified",
+    OTP_VERIFIED: 'OTP verified',
     CURRENT_USER_RETRIEVED: 'Current user profile retrieved successfully',
     PROFILE_ADDED: 'Profile created successfully',
     PROFILE_UPDATED: 'Profile updated successfully',
@@ -18,7 +18,7 @@ module.exports = {
     AVATAR_UPDATED: 'Avatar updated successfully',
     ROLE_ADDED: 'Role added successfully',
     ROLE_UPDATED: 'Role updated successfully',
-    ROLE_RETRIEVED: 'Role retrieved successfully',
+    ROLE_RETRIEVED: 'Role retrieved successfully'
   },
 
   ERROR_MESSAGE: {
@@ -34,6 +34,6 @@ module.exports = {
     PROFILE_ALREADY_EXIST: 'Profile sudah ada',
     ROLE_ALREADY_EXISTS: 'Role sudah ada',
     ROLE_NOT_FOUND: 'Role tidak ditemukan',
-    USER_ROLE_EXISTS: 'User role sudah ada',
+    USER_ROLE_EXISTS: 'User role sudah ada'
   }
 }

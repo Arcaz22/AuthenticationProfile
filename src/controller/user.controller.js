@@ -83,7 +83,13 @@ const AddAvatarProfileController = async (req, res, next) => {
 
 const GetAllUserController = async (req, res, next) => {
   try {
-    const { page = 1, perPage = 10, search, role: roleFilter, sortOrder = 'ASC' } = req.query
+    const {
+      page = 1,
+      perPage = 10,
+      search,
+      role: roleFilter,
+      sortOrder = 'ASC'
+    } = req.query
 
     const filters = {
       search,

@@ -1,14 +1,24 @@
 /**
  * @swagger
  * /v1/auth/google:
- *   post:
- *      summary: signin user with google
- *      tags: [Auth]
- *      responses:
- *         200:
- *          description: direct to google login page
- *         500:
- *          description: error
+ *   get:
+ *     summary: Sign in with Google
+ *     description: |
+ *       Untuk menggunakan fitur login Google:
+ *       1. Buka URL berikut di browser baru: http://localhost:3000/v1/auth/google
+ *       2. Login menggunakan akun Google Anda
+ *       3. Setelah berhasil, Anda akan diarahkan kembali ke aplikasi
+ *     tags: [Auth]
+ *     responses:
+ *       302:
+ *         description: Redirect ke halaman login Google
+ *         headers:
+ *           Location:
+ *             schema:
+ *               type: string
+ *               example: https://accounts.google.com/o/oauth2/v2/auth?...
+ *       500:
+ *         description: Terjadi kesalahan server
  */
 
 /**

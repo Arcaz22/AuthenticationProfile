@@ -8,8 +8,8 @@ const VerifyOtpController = async (req, res, next) => {
 
     const response = await verifyOtp({ email, otp })
     sendSuccessResponse(res, {
-        message: SUCCESS_MESSAGE.OTP_VERIFIED,
-        data: response
+      message: SUCCESS_MESSAGE.OTP_VERIFIED,
+      data: response
     })
   } catch (error) {
     next(error)

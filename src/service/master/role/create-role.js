@@ -5,7 +5,7 @@ const { ERROR_MESSAGE } = require('../../../common/utils/constant')
 const createRole = async (payload) => {
   try {
     const { error } = roleSchema.validate(payload, { abortEarly: false })
-    
+
     if (error) {
       throw new Error(error.message)
     }

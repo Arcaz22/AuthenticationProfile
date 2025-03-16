@@ -5,7 +5,9 @@ const { formatPhoneNumber } = require('../../../common/utils/phone-format')
 
 const addProfile = async (payload) => {
   try {
-    const { error } = createUserProfileSchema.validate(payload, { abortEarly: false })
+    const { error } = createUserProfileSchema.validate(payload, {
+      abortEarly: false
+    })
     if (error) {
       throw new Error(error.message)
     }

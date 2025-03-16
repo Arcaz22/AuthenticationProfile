@@ -14,7 +14,7 @@ const router = Router()
 router.post('/signup', [], SignUpController)
 router.post('/signin', [], SignInController)
 router.post('/refresh-token', [authorization], RefreshTokenController)
-router.post('/google', [], LoginWithGoogleController)
+router.get('/google', [], LoginWithGoogleController)
 router.get('/google/callback', [], HandleGoogleLoginCallbackController)
 router.post('/logout', [authorization], LogoutController)
 

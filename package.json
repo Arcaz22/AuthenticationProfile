@@ -14,8 +14,16 @@
     "db:rollback": "sequelize db:migrate:undo",
     "db:rollback:all": "npx sequelize-cli db:migrate:undo:all",
     "db:seed:all": "npx sequelize-cli db:seed:all",
+    "db:test:create": "NODE_ENV=test npx sequelize-cli db:create",
+    "db:test:migrate": "NODE_ENV=test npx sequelize-cli db:migrate",
+    "db:test:seed:all": "NODE_ENV=test npx sequelize-cli db:seed:all",
     "docker:redis": "docker run -d --name redis_split_bill -p 6380:6379 --restart unless-stopped redis redis-server --requirepass 'R4dis'",
-    "docker:minio": "docker run -d --name minio_split_bill -p 9000:9000 -p 9001:9001 --restart unless-stopped -e MINIO_ACCESS_KEY=minio_split_bill -e MINIO_SECRET_KEY=minio_split_bill minio/minio server /data --console-address ':9001'"
+    "docker:minio": "docker run -d --name minio_split_bill -p 9000:9000 -p 9001:9001 --restart unless-stopped -e MINIO_ACCESS_KEY=minio_split_bill -e MINIO_SECRET_KEY=minio_split_bill minio/minio server /data --console-address ':9001'",
+    "test": "NODE_ENV=test mocha test/**/*.test.js --exit",
+    "test:unit": "NODE_ENV=test mocha test/unit/**/*.test.js --exit",
+    "test:integration": "NODE_ENV=test mocha test/integration/**/*.test.js --exit",
+    "test:coverage": "NODE_ENV=test nyc --reporter=text --reporter=html mocha test/**/*.test.js --exit",
+    "test:watch": "NODE_ENV=test mocha test/**/*.test.js --watch"
   },
   "author": "arcaz22",
   "license": "ISC",
@@ -44,10 +52,16 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "chai": "^5.2.0",
     "eslint": "^9.21.0",
+    "eslint-plugin-mocha": "^10.5.0",
     "globals": "^16.0.0",
+    "mocha": "^11.1.0",
     "nodemon": "^3.1.9",
+    "nyc": "^17.1.0",
     "prettier": "^3.5.2",
-    "sequelize-cli": "^6.6.2"
+    "sequelize-cli": "^6.6.2",
+    "sinon": "^19.0.2",
+    "supertest": "^7.0.0"
   }
 }

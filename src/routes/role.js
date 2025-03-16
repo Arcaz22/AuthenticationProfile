@@ -1,8 +1,8 @@
 const { Router } = require('express')
 const {
-    CreateRoleController,
-    GetAllRoleController,
-    AddUserRoleController,
+  CreateRoleController,
+  GetAllRoleController,
+  AddUserRoleController
 } = require('../controller/role.controller')
 const authorization = require('../middlewares/authorization')
 
