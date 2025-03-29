@@ -19,7 +19,17 @@ const signIn = async (payload) => {
 
     const { username, password } = payload
 
-    const userExist = await user.findOne({ where: { username } })
+    const userExist = await user.findOne({ where: { username },
+      include: [
+        {
+          association: 'roles',
+          attributes: ['name'],
+          through: {
+            attributes: []
+          }
+        }
+      ]
+    })
     if (!userExist) {
       const error = new Error(ERROR_MESSAGE.USER_NOT_FOUND)
       error.statusCode = 404
@@ -39,10 +49,15 @@ const signIn = async (payload) => {
       throw error
     }
 
+    const userRole = userExist.roles && userExist.roles.length > 0
+      ? userExist.roles[0].name
+      : null
+
     const accessToken = generateAccessToken({
       id: userExist.id,
       username: userExist.username,
-      email: userExist.email
+      email: userExist.email,
+      role: userRole
     })
 
     const refreshToken = generateRefreshToken({
@@ -65,7 +80,8 @@ const signIn = async (payload) => {
       user: {
         id: userExist.id,
         username: userExist.username,
-        email: userExist.email
+        email: userExist.email,
+        role: userRole
       },
       access_token: accessToken,
       refresh_token: refreshToken

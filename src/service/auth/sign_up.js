@@ -4,6 +4,7 @@ const { ERROR_MESSAGE } = require('../../common/utils/constant')
 const { createAndStoreOTP } = require('../../common/utils/otp')
 const signUpSchema = require('../../common/validations/auth/sign-up')
 const transporter = require('../../config/mailer')
+const rabbitmq = require('../../config/rabbitmq')
 
 const signUp = async (payload) => {
   const { error } = signUpSchema.validate(payload, { abortEarly: false })
@@ -80,6 +81,12 @@ const signUp = async (payload) => {
       .catch((error) => {
         console.error('Email sending failed:', error)
       })
+
+    await rabbitmq.sendNotification(
+      newUser.id,
+      `Selamat datang di Split Bill, ${username}!`,
+      'USER_SIGNUP'
+    )
 
     await transaction.commit()
 
